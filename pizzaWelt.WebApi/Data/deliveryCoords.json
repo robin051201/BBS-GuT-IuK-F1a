@@ -1,41 +1,232 @@
-﻿{
-  "table": "deliveryCoords",
-  "rows":
-  [
-    {
-      "Abfahrtsort": "Trier Süd",
-      "Latitude": "49.744630",
-      "Longitude": "6.636686"
-    },
-    {
-      "Abfahrtsort": "Balduinsbrunnen/Hauptbahnhof, Trier",
-      "Latitude": "49.757874",
-      "Longitude": "6.649357"
-    },
-    {
-      "Abfahrtsort": "Nikolaus-Koch-Platz, Trier",
-      "Latitude": "49.757118",
-      "Longitude": "6.637707"
-    },
-    {
-      "Abfahrtsort": "Kürenz Domänenstraße, Trier",
-      "Latitude": "49.763159",
-      "Longitude": "6.666679"
-    },
-    {
-      "Abfahrtsort": "Trier Hbf",
-      "Latitude": "49.756795",
-      "Longitude": "6.652395"
-    },
-    {
-      "Abfahrtsort": "Hauptbahnhof, Trier",
-      "Latitude": "49.757487",
-      "Longitude": "6.652000"
-    },
-    {
-      "Abfahrtsort": "Karl-Marx-Haus, Trier",
-      "Latitude": "49.753792",
-      "Longitude": "6.636502"
-    }
-  ]
-}
+﻿[
+  {
+    "CurrentLocation": "Trier Süd",
+    "Latitude": "49.744630",
+    "Longitude": "6.636686"
+  },
+  {
+    "CurrentLocation": "Balduinsbrunnen/Hauptbahnhof, Trier",
+    "Latitude": "49.757874",
+    "Longitude": "6.649357"
+  },
+  {
+    "CurrentLocation": "Nikolaus-Koch-Platz, Trier",
+    "Latitude": "49.757118",
+    "Longitude": "6.637707"
+  },
+  {
+    "CurrentLocation": "Kürenz Domänenstraße, Trier",
+    "Latitude": "49.763159",
+    "Longitude": "6.666679"
+  },
+  {
+    "CurrentLocation": "Trier Hbf",
+    "Latitude": "49.756795",
+    "Longitude": "6.652395"
+  },
+  {
+    "CurrentLocation": "Hauptbahnhof, Trier",
+    "Latitude": "49.757487",
+    "Longitude": "6.652000"
+  },
+  {
+    "CurrentLocation": "Karl-Marx-Haus, Trier",
+    "Latitude": "49.753792",
+    "Longitude": "6.636502"
+  },
+  {
+    "CurrentLocation": "Kürenz Am Weidengraben (E), Trier",
+    "Latitude": "49.750709",
+    "Longitude": "6.689026"
+  },
+  {
+    "CurrentLocation": "Kürenz Am Weidengraben (A), Trier",
+    "Latitude": "49.74618",
+    "Longitude": "6.69103"
+  },
+  {
+    "CurrentLocation": "Tarforst Universität, Trier",
+    "Latitude": "49.74704",
+    "Longitude": "6.68891"
+  },
+  {
+    "CurrentLocation": "Kürenz Kohlenstraße, Trier",
+    "Latitude": "49.75056",
+    "Longitude": "6.68526"
+  },
+  {
+    "CurrentLocation": "Kürenz Bonifatiusstraße, Trier",
+    "Latitude": "49.75353",
+    "Longitude": "6.68250"
+  },
+  {
+    "CurrentLocation": "Kürenz Avelerhof, Trier",
+    "Latitude": "49.75886",
+    "Longitude": "6.67964"
+  },
+  {
+    "CurrentLocation": "Kürenz Im Avelertal, Trier",
+    "Latitude": "49.75986",
+    "Longitude": "6.67412"
+  },
+  {
+    "CurrentLocation": "Kürenz Kolonnenweg, Trier",
+    "Latitude": "49.76107",
+    "Longitude": "6.67203"
+  },
+  {
+    "CurrentLocation": "Kürenz Arnoldistraße, Trier",
+    "Latitude": "49.76180",
+    "Longitude": "6.66420"
+  },
+  {
+    "CurrentLocation": "Kürenz Nellstraße, Trier",
+    "Latitude": "49.76058",
+    "Longitude": "6.66145"
+  },
+  {
+    "CurrentLocation": "Kürenz Schönbornstraße, Trier",
+    "Latitude": "49.75945",
+    "Longitude": "6.65824"
+  },
+  {
+    "CurrentLocation": "Kürenz Kürenzer Straße, Trier",
+    "Latitude": "9.76075",
+    "Longitude": "6.65561"
+  },
+  {
+    "CurrentLocation": "Balduinsbrunnen/Hauptbahnhof, Trier",
+    "Latitude": "49.75791",
+    "Longitude": "6.64996"
+  },
+  {
+    "CurrentLocation": "Theodor-Heuss-Allee, Trier",
+    "Latitude": "49.75923",
+    "Longitude": "6.64653"
+  },
+  {
+    "CurrentLocation": "Porta Nigra, Trier",
+    "Latitude": "49.75913",
+    "Longitude": "6.64382"
+  },
+  {
+    "CurrentLocation": "Treviris, Trier",
+    "Latitude": "49.75888",
+    "Longitude": "6.64089"
+  },
+  {
+    "CurrentLocation": "Galerie, Trier",
+    "Latitude": "49.75571",
+    "Longitude": "6.63706"
+  },
+  {
+    "CurrentLocation": "Rathaus/Stadttheater, Trier",
+    "Latitude": "49.75155",
+    "Longitude": "6.63552"
+  },
+  {
+    "CurrentLocation": "Südallee/Kaiserstraße, Trier",
+    "Latitude": "49.75027",
+    "Longitude": "6.63481"
+  },
+  {
+    "CurrentLocation": "Gilbertstraße, Trier",
+    "Latitude": "9.74765",
+    "Longitude": "6.63611"
+  },
+  {
+    "CurrentLocation": "Südbahnhof, Trier",
+    "Latitude": "49.74412",
+    "Longitude": "6.63431"
+  },
+  {
+    "CurrentLocation": "Töpferstraße, Trier",
+    "Latitude": "49.74212",
+    "Longitude": "6.63347"
+  },
+  {
+    "CurrentLocation": "St. Matthias, Trier",
+    "Latitude": "49.73890",
+    "Longitude": "6.63179"
+  },
+  {
+    "CurrentLocation": "Euren Messepark P+R, Trier",
+    "Latitude": "49.74034",
+    "Longitude": "6.62179"
+  },
+  {
+    "CurrentLocation": "Euren Konrad-Adenauer-Brücke, Trier",
+    "Latitude": "49.74052",
+    "Longitude": "6.61965"
+  },
+  {
+    "CurrentLocation": "Euren Bertard, Trier",
+    "Latitude": "49.73922",
+    "Longitude": "6.61694"
+  },
+  {
+    "CurrentLocation": "Euren Eisenbahnstraße, Trier",
+    "Latitude": "49.73681",
+    "Longitude": "6.61276"
+  },
+  {
+    "CurrentLocation": "Euren Diedenhofener Str., Trier",
+    "Latitude": "49.73164",
+    "Longitude": "6.60798"
+  },
+  {
+    "CurrentLocation": "Euren Niederkircher Straße, Trier",
+    "Latitude": "49.72933",
+    "Longitude": "6.60657"
+  },
+  {
+    "CurrentLocation": "Zewen Alte Rollbahn, Trier",
+    "Latitude": "49.72763",
+    "Longitude": "6.60407"
+  },
+  {
+    "CurrentLocation": "Zewen Gottbillstraße, Trier",
+    "Latitude": "49.72643",
+    "Longitude": "6.59973"
+  },
+  {
+    "CurrentLocation": "Zewen Industriegebiet, Trier",
+    "Latitude": "49.72092",
+    "Longitude": "6.59375"
+  },
+  {
+    "CurrentLocation": "Zewen Gutenbergstraße, Trier",
+    "Latitude": "49.72272",
+    "Longitude": "6.58728"
+  },
+  {
+    "CurrentLocation": "Zewen Im Siebenborn, Trier",
+    "Latitude": "49.72097",
+    "Longitude": "6.58602"
+  },
+  {
+    "CurrentLocation": "Zewen Kantstraße, Trier",
+    "Latitude": "49.71941",
+    "Longitude": "6.58212"
+  },
+  {
+    "CurrentLocation": "Zewen Waldstraße, Trier",
+    "Latitude": "49.72054",
+    "Longitude": "6.57879"
+  },
+  {
+    "CurrentLocation": "Zewen Martinstraße, Trier",
+    "Latitude": "49.71852",
+    "Longitude": "6.57680"
+  },
+  {
+    "CurrentLocation": "Zewen Kanzelstraße, Trier",
+    "Latitude": "49.71622",
+    "Longitude": "6.57427"
+  },
+  {
+    "CurrentLocation": "Zewen Wasserbilliger Straße, Trier",
+    "Latitude": "49.71558",
+    "Longitude": "6.57510"
+  }
+]
