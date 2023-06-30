@@ -69,10 +69,6 @@ internal class LiveTrackingService : ILiveTrackingService
                 }
 
             }
-            else
-            {
-                Console.WriteLine("Error");
-            }
         }
         catch (Exception ex)
         {
@@ -80,48 +76,7 @@ internal class LiveTrackingService : ILiveTrackingService
         }
         return result;
     }
-
-
-    //DistanceMatrix free trial expired
-    //public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result geoCoordinates)
-    //{
-    //    using var httpClient = new HttpClient();
-    //    DurationAndDistance durationAndDistance = new();
-    //    var apiKey = "2ghW21sQpYWDpRavcPQYNQjHqAumo";
-
-    //    if (trackingModel != null && geoCoordinates != null)
-    //    {
-    //        var apiCoordinatesUrl = $"https://api.distancematrix.ai/maps/api/distancematrix/json?origins={trackingModel.CurrentLatOfDriver},{trackingModel.CurrentLonOfDriver}&destinations=49.795879,6.823720&key={apiKey}";
-
-    //        try
-    //        {
-    //            var responseCoordinates = await httpClient.GetAsync(apiCoordinatesUrl);
-
-    //            if (responseCoordinates.IsSuccessStatusCode)
-    //            {
-    //                var contentCoordinates = await responseCoordinates.Content.ReadAsStringAsync();
-    //                var rootObject = JsonConvert.DeserializeObject<RootobjectDest>(contentCoordinates);
-
-    //                if (rootObject != null)
-    //                {
-    //                    durationAndDistance.Duration = rootObject.rows[0].elements[0].duration.text;
-    //                    durationAndDistance.Distance = rootObject.rows[0].elements[0].distance.text;
-    //                }
-
-    //            }
-    //            else
-    //            {
-    //                Console.WriteLine("Error");
-    //            }
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            Console.WriteLine(ex.Message);
-    //        }
-    //    }
-    //    return durationAndDistance;
-    //}
-
+           
     public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result customerLoc)
     {
         DurationAndDistance durationAndDistance = new();
@@ -129,9 +84,7 @@ internal class LiveTrackingService : ILiveTrackingService
         if (trackingModel != null && customerLoc != null)
         {
             try
-            {
-
-                
+            {   
                 var client = new HttpClient();
                 var request = new HttpRequestMessage
                 {
@@ -149,16 +102,12 @@ internal class LiveTrackingService : ILiveTrackingService
                     var body = await response.Content.ReadAsStringAsync();
                     if(body != null)
                     {
-
                         Models.Results result = JsonConvert.DeserializeObject<Models.Results>(body);
 
                         int distanceInMeters = result.distances[0][0];
                         double distanceInKilometers = distanceInMeters / 1000.0;
                         int durationInSeconds = result.durations[0][0];
                         double durationInMinutes = durationInSeconds / 60.0;
-
-                        string formattedDistance = distanceInKilometers.ToString("0.00");
-                        string formattedDuration = durationInMinutes.ToString("0.00");
 
                         durationAndDistance.Duration = durationInMinutes;
                         durationAndDistance.Distance = distanceInKilometers;
