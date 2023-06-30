@@ -4,7 +4,8 @@
   [
     {
       "Abfahrtsort": "Trier Süd",
-      "Abfahrtskoordinaten": "49,744630, 6,636686"
+      "Lat": "49.744630",
+      "Lon": "6.636686"
     },
     {
       "Abfahrtsort": "Balduinsbrunnen/Hauptbahnhof, Trier",
