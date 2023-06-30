@@ -4,32 +4,38 @@
   [
     {
       "Abfahrtsort": "Trier Süd",
-      "Lat": "49.744630",
-      "Lon": "6.636686"
+      "Latitude": "49.744630",
+      "Longitude": "6.636686"
     },
     {
       "Abfahrtsort": "Balduinsbrunnen/Hauptbahnhof, Trier",
-      "Abfahrtskoordinaten": "49.757874, 6.649357"
+      "Latitude": "49.757874",
+      "Longitude": "6.649357"
     },
     {
       "Abfahrtsort": "Nikolaus-Koch-Platz, Trier",
-      "Abfahrtskoordinaten": "49.757118, 6.637707"
+      "Latitude": "49.757118",
+      "Longitude": "6.637707"
     },
     {
       "Abfahrtsort": "Kürenz Domänenstraße, Trier",
-      "Abfahrtskoordinaten": "49.763159, 6.666679"
+      "Latitude": "49.763159",
+      "Longitude": "6.666679"
     },
     {
       "Abfahrtsort": "Trier Hbf",
-      "Abfahrtskoordinaten": "49.756795, 6.652395"
+      "Latitude": "49.756795",
+      "Longitude": "6.652395"
     },
     {
       "Abfahrtsort": "Hauptbahnhof, Trier",
-      "Abfahrtskoordinaten": "49.757487, 6.652000"
+      "Latitude": "49.757487",
+      "Longitude": "6.652000"
     },
     {
       "Abfahrtsort": "Karl-Marx-Haus, Trier",
-      "Abfahrtskoordinaten": "49.753792, 6.636502"
+      "Latitude": "49.753792",
+      "Longitude": "6.636502"
     }
   ]
 }
