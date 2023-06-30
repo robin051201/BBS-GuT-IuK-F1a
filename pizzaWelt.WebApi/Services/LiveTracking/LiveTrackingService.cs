@@ -1,4 +1,6 @@
-﻿namespace PizzaWelt.Services;
+﻿using pizzaWelt.Models;
+
+namespace PizzaWelt.Services;
 
 internal class LiveTrackingService : ILiveTrackingService
 {
@@ -29,8 +31,7 @@ internal class LiveTrackingService : ILiveTrackingService
         //db get properties by ordeId
         trackingModel.Id = 1;
         trackingModel.OrderId = 1;
-        trackingModel.CurrentLatOfDriver = "49.759191";   //HardCoded
-        trackingModel.CurrentLonOfDriver = "6.635281";    //HardCoded
+        GetRandomLocationOfDriver(trackingModel);
         trackingModel.DriverIsOnTheWay = true;
         trackingModel.Status = "In Time";
 
@@ -54,7 +55,7 @@ internal class LiveTrackingService : ILiveTrackingService
             if (responseCoordinates.IsSuccessStatusCode)
             {
                 var contentCoordinates = await responseCoordinates.Content.ReadAsStringAsync();
-                var rootObject = JsonConvert.DeserializeObject<Rootobject>(contentCoordinates);
+                var rootObject = JsonConvert.DeserializeObject<Models.Rootobject>(contentCoordinates);
 
                 if (rootObject != null)
                 {
@@ -116,5 +117,34 @@ internal class LiveTrackingService : ILiveTrackingService
             }
         }
         return durationAndDistance;
+    }
+
+    public LiveTrackingModel GetRandomLocationOfDriver(LiveTrackingModel trackingModel)
+    {
+        string jsonFile = "Data/deliveryCoords.json";
+        try
+        {
+            string json = File.ReadAllText(jsonFile);
+            Location[] locations = JsonConvert.DeserializeObject<Location[]>(json);
+
+            Random random = new Random();
+            if (locations != null)
+            {
+                int randomIndex = random.Next(0, locations.Length);
+
+                Location randomLocation = locations[randomIndex];
+
+                if (randomLocation != null)
+                {
+                    trackingModel.CurrentLatOfDriver = randomLocation.Latitude!;
+                    trackingModel.CurrentLonOfDriver = randomLocation.Longitude!;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return trackingModel;
     }
 }
