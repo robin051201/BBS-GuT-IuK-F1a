@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using pizzaWelt.WebApi.Interfaces;
 using pizzaWelt.WebApi.Models;
+using System.Globalization;
 
 namespace pizzaWelt.WebApi.Services;
 
@@ -17,8 +18,8 @@ internal class LiveTrackingService : ILiveTrackingService
         durationAndDistance = await GetDurationBetweenTwoGps(trackingModel, geoCoordinates);
         if (geoCoordinates != null)
         {
-            trackingModel.DestiantionLat = geoCoordinates.lat.ToString();
-            trackingModel.DestiantionLon = geoCoordinates.lon.ToString();
+            trackingModel.DestiantionLat = float.Parse(geoCoordinates.lat, CultureInfo.InvariantCulture.NumberFormat);
+            trackingModel.DestiantionLon = float.Parse(geoCoordinates.lon, CultureInfo.InvariantCulture.NumberFormat);
         }
         if (durationAndDistance != null)
         {
@@ -80,35 +81,88 @@ internal class LiveTrackingService : ILiveTrackingService
         return result;
     }
 
-    public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result geoCoordinates)
+
+    //DistanceMatrix free trial expired
+    //public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result geoCoordinates)
+    //{
+    //    using var httpClient = new HttpClient();
+    //    DurationAndDistance durationAndDistance = new();
+    //    var apiKey = "2ghW21sQpYWDpRavcPQYNQjHqAumo";
+
+    //    if (trackingModel != null && geoCoordinates != null)
+    //    {
+    //        var apiCoordinatesUrl = $"https://api.distancematrix.ai/maps/api/distancematrix/json?origins={trackingModel.CurrentLatOfDriver},{trackingModel.CurrentLonOfDriver}&destinations=49.795879,6.823720&key={apiKey}";
+
+    //        try
+    //        {
+    //            var responseCoordinates = await httpClient.GetAsync(apiCoordinatesUrl);
+
+    //            if (responseCoordinates.IsSuccessStatusCode)
+    //            {
+    //                var contentCoordinates = await responseCoordinates.Content.ReadAsStringAsync();
+    //                var rootObject = JsonConvert.DeserializeObject<RootobjectDest>(contentCoordinates);
+
+    //                if (rootObject != null)
+    //                {
+    //                    durationAndDistance.Duration = rootObject.rows[0].elements[0].duration.text;
+    //                    durationAndDistance.Distance = rootObject.rows[0].elements[0].distance.text;
+    //                }
+
+    //            }
+    //            else
+    //            {
+    //                Console.WriteLine("Error");
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Console.WriteLine(ex.Message);
+    //        }
+    //    }
+    //    return durationAndDistance;
+    //}
+
+    public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result customerLoc)
     {
-        using var httpClient = new HttpClient();
         DurationAndDistance durationAndDistance = new();
-        var apiKey = "2ghW21sQpYWDpRavcPQYNQjHqAumo";
 
-        if (trackingModel != null && geoCoordinates != null)
+        if (trackingModel != null && customerLoc != null)
         {
-            var apiCoordinatesUrl = $"https://api.distancematrix.ai/maps/api/distancematrix/json?origins={trackingModel.CurrentLatOfDriver},{trackingModel.CurrentLonOfDriver}&destinations={geoCoordinates.lat},{geoCoordinates.lon}&key={apiKey}";
-
             try
             {
-                var responseCoordinates = await httpClient.GetAsync(apiCoordinatesUrl);
 
-                if (responseCoordinates.IsSuccessStatusCode)
+                
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
                 {
-                    var contentCoordinates = await responseCoordinates.Content.ReadAsStringAsync();
-                    var rootObject = JsonConvert.DeserializeObject<RootobjectDest>(contentCoordinates);
-
-                    if (rootObject != null)
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?origins={trackingModel.CurrentLatOfDriver}%2C{trackingModel.CurrentLonOfDriver}&destinations={customerLoc.lat}%2C{customerLoc.lon}"),
+                    Headers =
                     {
-                        durationAndDistance.Duration = rootObject.rows[0].elements[0].duration.text;
-                        durationAndDistance.Distance = rootObject.rows[0].elements[0].distance.text;
-                    }
-
-                }
-                else
+                        { "X-RapidAPI-Key", "4ea5f971a8mshd68b95e85578838p19b961jsna843abdf6df1" },
+                        { "X-RapidAPI-Host", "trueway-matrix.p.rapidapi.com" },
+                    },
+                };
+                using (var response = await client.SendAsync(request))
                 {
-                    Console.WriteLine("Error");
+                    response.EnsureSuccessStatusCode();
+                    var body = await response.Content.ReadAsStringAsync();
+                    if(body != null)
+                    {
+
+                        Models.Results result = JsonConvert.DeserializeObject<Models.Results>(body);
+
+                        int distanceInMeters = result.distances[0][0];
+                        double distanceInKilometers = distanceInMeters / 1000.0;
+                        int durationInSeconds = result.durations[0][0];
+                        double durationInMinutes = durationInSeconds / 60.0;
+
+                        string formattedDistance = distanceInKilometers.ToString("0.00");
+                        string formattedDuration = durationInMinutes.ToString("0.00");
+
+                        durationAndDistance.Duration = durationInMinutes;
+                        durationAndDistance.Distance = distanceInKilometers;
+                    }
                 }
             }
             catch (Exception ex)

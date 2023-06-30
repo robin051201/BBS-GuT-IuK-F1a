@@ -35,7 +35,12 @@ public class Duration
 
 public class DurationAndDistance
 {
-    public string? Duration { get; set; }
-    public string? Distance { get; set; }
+    public double? Duration { get; set; }
+    public double? Distance { get; set; }
 }
 
+public class Results
+{
+    public int[][] distances { get; set; }
+    public int[][] durations { get; set; }
+}

@@ -33,8 +33,8 @@ public class Result
     public string postcode { get; set; }
     public string street { get; set; }
     public string housenumber { get; set; }
-    public float lon { get; set; }
-    public float lat { get; set; }
+    public string lon { get; set; }
+    public string lat { get; set; }
     public string formatted { get; set; }
     public string address_line1 { get; set; }
     public string address_line2 { get; set; }

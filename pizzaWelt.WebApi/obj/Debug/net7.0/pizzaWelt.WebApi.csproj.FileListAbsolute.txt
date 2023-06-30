@@ -31,3 +31,4 @@ C:\Sources\pizzaWelt.WebApi\pizzaWelt.WebApi\obj\Debug\net7.0\refint\pizzaWelt.W
 C:\Sources\pizzaWelt.WebApi\pizzaWelt.WebApi\obj\Debug\net7.0\pizzaWelt.WebApi.pdb
 C:\Sources\pizzaWelt.WebApi\pizzaWelt.WebApi\obj\Debug\net7.0\pizzaWelt.WebApi.genruntimeconfig.cache
 C:\Sources\pizzaWelt.WebApi\pizzaWelt.WebApi\obj\Debug\net7.0\ref\pizzaWelt.WebApi.dll
+C:\Sources\pizzaWelt.WebApi\pizzaWelt.WebApi\bin\Debug\net7.0\Newtonsoft.Json.dll
