@@ -97,13 +97,16 @@ internal class LiveTrackingService : ILiveTrackingService
                     {
                         Models.Results result = JsonConvert.DeserializeObject<Models.Results>(body);
 
-                        int distanceInMeters = result.distances[0][0];
-                        double distanceInKilometers = distanceInMeters / 1000.0;
-                        int durationInSeconds = result.durations[0][0];
-                        double durationInMinutes = durationInSeconds / 60.0;
+                        if (result != null)
+                        { 
+                            int distanceInMeters = result.distances[0][0];
+                            double distanceInKilometers = distanceInMeters / 1000.0;
+                            int durationInSeconds = result.durations[0][0];
+                            double durationInMinutes = durationInSeconds / 60.0;
 
-                        durationAndDistance.Duration = durationInMinutes;
-                        durationAndDistance.Distance = distanceInKilometers;
+                            durationAndDistance.Duration = durationInMinutes;
+                            durationAndDistance.Distance = distanceInKilometers;
+                        }
                     }
                 }
             }

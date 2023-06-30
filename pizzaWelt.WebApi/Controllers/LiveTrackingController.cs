@@ -11,7 +11,7 @@ public class LiveTrackingController : ControllerBase
         this.liveTrackingService = liveTrackingService;
     }
 
-    [HttpGet("/api/LiveTracking/OrderId={id}")]
+    [HttpGet("/LiveTracking/OrderId={id}")]
     public async Task<ActionResult<LiveTrackingModel>> GetLiveTrackingByOrderIdAsync(int id)
     {
         var result = await liveTrackingService.GetLiveTrackingByOrderIdAsync(id);
