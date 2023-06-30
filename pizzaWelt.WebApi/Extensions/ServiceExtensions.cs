@@ -36,8 +36,8 @@
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            services.AddTransient<ServiceHelper>();
-            services.AddTransient<AsyncActionFilter>();
+            //services.AddScoped<ServiceHelper>();
+            //services.AddScoped<AsyncActionFilter>();
             services.AddApplicationServiceTransients();
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

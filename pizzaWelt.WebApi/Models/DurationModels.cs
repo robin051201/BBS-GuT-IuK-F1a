@@ -1,4 +1,4 @@
-﻿namespace pizzaWelt.WebApi.Models;
+﻿namespace PizzaWelt.Models;
 public class RootobjectDest
 {
     public string[] destination_addresses { get; set; }

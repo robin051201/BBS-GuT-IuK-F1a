@@ -1,4 +1,4 @@
-﻿namespace pizzaWelt.WebApi.Models;
+﻿namespace PizzaWelt.Models;
 
 
 public class Rootobject

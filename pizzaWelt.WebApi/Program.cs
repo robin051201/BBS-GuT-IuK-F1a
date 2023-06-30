@@ -1,5 +1,6 @@
 global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;
+global using System.Globalization;
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Net;
 global using System.Reflection;
@@ -34,6 +35,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
+builder.Services.AddControllers();
+
 builder.Services.ConfigureServices();
 
 builder.Services.ConfigureCors();
@@ -50,7 +53,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.ConfigureIdentity();
 
-builder.Services.ConfigureAuthentication(builder.Configuration);
+//builder.Services.ConfigureAuthentication(builder.Configuration);
 
 builder.Services.ConfigureIdentityServer(builder.Configuration);
 
@@ -83,7 +86,7 @@ app.UseAuthentication();
 
 app.UseIdentityServer();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

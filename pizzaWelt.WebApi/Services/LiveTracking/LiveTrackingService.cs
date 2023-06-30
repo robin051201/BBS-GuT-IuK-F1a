@@ -1,10 +1,4 @@
-﻿using Newtonsoft.Json;
-using pizzaWelt.WebApi.Interfaces;
-using pizzaWelt.WebApi.Models;
-using System.Globalization;
-
-namespace pizzaWelt.WebApi.Services;
-
+﻿namespace PizzaWelt.Services;
 
 internal class LiveTrackingService : ILiveTrackingService
 {
@@ -29,6 +23,7 @@ internal class LiveTrackingService : ILiveTrackingService
 
         return trackingModel;
     }
+
     public async Task<LiveTrackingModel> FillTrackingModel(LiveTrackingModel trackingModel)
     {
         //db get properties by ordeId
@@ -41,7 +36,6 @@ internal class LiveTrackingService : ILiveTrackingService
 
         return trackingModel;
     }
-
 
     public async Task<Result> GetUserGpsAsync(int id)
     {
@@ -67,7 +61,6 @@ internal class LiveTrackingService : ILiveTrackingService
                     result.lat = rootObject.results[0].lat;
                     result.lon = rootObject.results[0].lon;
                 }
-
             }
         }
         catch (Exception ex)
@@ -76,7 +69,7 @@ internal class LiveTrackingService : ILiveTrackingService
         }
         return result;
     }
-           
+
     public async Task<DurationAndDistance> GetDurationBetweenTwoGps(LiveTrackingModel trackingModel, Result customerLoc)
     {
         DurationAndDistance durationAndDistance = new();
@@ -84,7 +77,7 @@ internal class LiveTrackingService : ILiveTrackingService
         if (trackingModel != null && customerLoc != null)
         {
             try
-            {   
+            {
                 var client = new HttpClient();
                 var request = new HttpRequestMessage
                 {
@@ -100,7 +93,7 @@ internal class LiveTrackingService : ILiveTrackingService
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    if(body != null)
+                    if (body != null)
                     {
                         Models.Results result = JsonConvert.DeserializeObject<Models.Results>(body);
 
@@ -121,5 +114,4 @@ internal class LiveTrackingService : ILiveTrackingService
         }
         return durationAndDistance;
     }
-
 }
