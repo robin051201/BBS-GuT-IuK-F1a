@@ -1,16 +1,26 @@
 ﻿using pizzaWelt.Models;
+using pizzaWelt.WebApi.Context;
+using pizzaWelt.WebApi.DbModels;
 
 namespace PizzaWelt.Services;
 
 internal class LiveTrackingService : ILiveTrackingService
 {
+    private readonly pizzaContext pizzaContext;
+
+    public LiveTrackingService(pizzaContext pizzaContext)
+    {
+        this.pizzaContext = pizzaContext;
+    }
+
+
     public async Task<LiveTrackingModel?> GetLiveTrackingByOrderIdAsync(int id)
     {
         LiveTrackingModel trackingModel = new();
         await FillTrackingModel(trackingModel);
         Result geoCoordinates = new();
         DurationAndDistance durationAndDistance = new();
-        geoCoordinates = await GetUserGpsAsync(id);
+        geoCoordinates = await GetCustomerFromOrderId(id);
         durationAndDistance = await GetDurationBetweenTwoGps(trackingModel, geoCoordinates);
         if (geoCoordinates != null)
         {
@@ -26,6 +36,23 @@ internal class LiveTrackingService : ILiveTrackingService
         return trackingModel;
     }
 
+    public async Task<Result> GetCustomerFromOrderId(int id)
+    {
+        int customerNumber = 0;
+        Adresse customerAdress = new();
+        var order = await pizzaContext.Bestellung.FirstOrDefaultAsync(x => x.Id == id);
+
+        if(order != null)
+        {
+            customerNumber = order.Kunde;
+
+            customerAdress = await pizzaContext.Adresse.FirstOrDefaultAsync(x => x.Kunde == customerNumber);
+        }
+        return await GetUserGpsAsync(customerAdress);
+    }
+
+
+
     public async Task<LiveTrackingModel> FillTrackingModel(LiveTrackingModel trackingModel)
     {
         //db get properties by ordeId
@@ -38,14 +65,26 @@ internal class LiveTrackingService : ILiveTrackingService
         return trackingModel;
     }
 
-    public async Task<Result> GetUserGpsAsync(int id)
+    public async Task<Result> GetUserGpsAsync(Adresse customerAdress)
     {
         using var httpClient = new HttpClient();
         Result result = new();
         var apiKey = "35485fbebd224a7baa42d7fa23c0d733";
-        int postCode = 54346;
-        string street = "Deierbachstraße";
-        int houseNumber = 9;
+        int postCode;
+        string street = string.Empty;
+        int houseNumber;
+        if (customerAdress.Plz > 0)
+        {
+            postCode = customerAdress.Plz;
+            street = customerAdress.Straße;
+            houseNumber = customerAdress.Hausnummer;
+        }
+        else
+        {
+            postCode = 54346;
+            street = "Deierbachstraße";
+            houseNumber = 9;
+        }
         var apiCoordinatesUrl = $"https://api.geoapify.com/v1/geocode/search?postcode={postCode}&street={street}&housenumber={houseNumber}&format=json&apiKey={apiKey}";
 
         try

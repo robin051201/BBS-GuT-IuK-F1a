@@ -1,10 +1,17 @@
-﻿namespace PizzaWelt.Extension
+﻿using pizzaWelt.WebApi.Context;
+
+namespace PizzaWelt.Extension
 {
     public static class ServiceExtensions
     {
         public static void ConfigureDbContext(this IServiceCollection services, string? connectionString)
         {
             services.AddDbContext<PizzaWeltDbContext>(options =>
+                options.UseMySQL(connectionString,
+                o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            services.AddDbContext<pizzaContext>(options =>
                 options.UseMySQL(connectionString,
                 o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
